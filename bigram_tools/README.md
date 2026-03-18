@@ -26,11 +26,13 @@ This shows how the words frequency in its context has boosted the score to a com
 
 ## Core Changes
 
-1. **Context Extraction** - Extract preceding word from editor using BreakIterator to identify word boundaries.
+1. **Single-Word Context Awareness** - Extracts preceding word to compare to in a `word|word` combination probability dataset to decrease (and therefore increase) the confidence score.
 
-2. **Scoring Integration** - Modified glide typing scoring to accept preceding word context. Applied multiplicative boost formula: `score = unigram * (1.0 + 0.5 * bigram)` instead of averaging.
+2. **Integration with Current Scoring** - Modified glide typing scoring to accept preceding word context. Applied multiplicative boost formula of 0-50%.
 
-3. **Interface Updates** - Added `getBigramProbabilities()` method to SuggestionProvider interface with backward-compatible defaults.
+3. **Bigrams Dataset in Binary Format** - **2.6GB** bigrams dataset in filtered and condensed `bigrams.bin` file format at **11.2MB** size with top 889k entries. Added `BigramBinaryFile.kt` file to `ime/nlp/latin` folder to manage the dataset.
+
+4. **New Functions** - Added `getBigramProbabilities()` method to SuggestionProvider interface with backward-compatible defaults.
 
 ## Data Storage Evolution
 
@@ -44,3 +46,4 @@ This shows how the words frequency in its context has boosted the score to a com
 - Batch fetching all bigrams for word1 before scoring loop
 - Pre-normalized probability values (0.0-1.0 range)
 - Float32 instead of Float64 for binary storage
+- FileChannel.map() to avoid filling the heap
