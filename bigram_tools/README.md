@@ -30,7 +30,7 @@ This shows how the words frequency in its context has boosted the score to a com
 
 2. **Integration with Current Scoring** - Modified glide typing scoring to accept preceding word context. Applied multiplicative boost formula of 0-50%.
 
-3. **Bigrams Dataset in Binary Format** - **2.6GB** bigrams dataset in filtered and condensed `bigrams.bin` file format at **11.2MB** size with top 889k entries. Added `BigramBinaryFile.kt` file to `ime/nlp/latin` folder to manage the dataset.
+3. **Bigrams Dataset in Binary Format** - **140GB** bigrams dataset in filtered and condensed `bigrams.bin` file format at **11.2MB** size with top 889k entries. Added `BigramBinaryFile.kt` file to `ime/nlp/latin` folder to manage the dataset.
 
 4. **New Functions** - Added `getBigramProbabilities()` method to SuggestionProvider interface with backward-compatible defaults.
 
